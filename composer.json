@@ -1,0 +1,38 @@
+{
+    "name": "harbour/logger-bundle",
+    "type": "symfony-bundle",
+    "description": "Harbour Logger Bundle",
+    "keywords": ["Microservice", "Harbour", "REST"],
+    "homepage": "https://github.com/Atlantic18/HarbourLoggerBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Frantisek Troster",
+            "email": "frantisek.troster@atlantic18.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "coral/core-bundle": "*@dev",
+        "symfony/framework-bundle": "~2.4",
+        "symfony/finder": "~2.4",
+        "symfony/yaml": "~2.4",
+        "symfony/browser-kit": "~2.4",
+        "symfony/security-bundle": "~2.4",
+        "symfony/monolog-bundle": "~2.4",
+        "sensio/framework-extra-bundle": "*",
+        "doctrine/orm": "*",
+        "doctrine/doctrine-bundle": "*",
+        "doctrine/doctrine-fixtures-bundle": "*",
+        "gedmo/doctrine-extensions": "dev-master"
+    },
+    "autoload": {
+        "psr-0": { "Harbour\\LoggerBundle": "" }
+    },
+    "target-dir": "Harbour/LoggerBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    }
+}
