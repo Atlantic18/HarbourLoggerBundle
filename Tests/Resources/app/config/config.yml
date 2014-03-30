@@ -11,6 +11,17 @@ framework:
     router:
         resource: %kernel.root_dir%/config/routing.php
     default_locale: "en"
+    templating:
+        engines: ['twig']
+    profiler:
+        collect: false
+
+web_profiler:
+    toolbar: false
+    intercept_redirects: false
+
+swiftmailer:
+    disable_delivery: true
 
 services:
     kernel.listener.core_bundle_exception_listener:
@@ -23,6 +34,9 @@ services:
         class: Coral\CoreBundle\Service\JsonAuthenticationService
         tags:
             - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
+    coral_connect:
+        class: Coral\SiteBundle\Service\CoralConnectServiceMockup
+        arguments: ["@service_container"]
     # Doctrine Extension listeners to handle behaviors
     gedmo.listener.timestampable:
         class: Gedmo\Timestampable\TimestampableListener
