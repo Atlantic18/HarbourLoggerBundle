@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<orm-designer version="2.3.0.826" mvc="Symfony2" orm="Doctrine2">
+  <module name="LoggerBundle" import-format="Doctrine2Php" import-path="Entity" uuid="a33716bd-f8aa-4a91-9133-763189108c90">
+    <entity name="Message" uuid="3b18627f-6604-4365-8ce7-286a1b00ca79">
+      <field name="id" type="integer" required="true" primary="true" auto-increment="true" uuid="c1c1bf55-c20b-4a0a-bd3c-ae7494568e6a"/>
+      <field name="level" type="string" size="8" required="true" uuid="4450c64b-f6e0-4a98-9639-028648e53983"/>
+      <field name="service" type="string" size="32" required="true" uuid="ab996d4e-73b5-4bea-8a3c-dadeb91f452d"/>
+      <field name="message" type="string" size="1024" required="true" uuid="60695997-d3d0-4c2d-85a7-990131dfa5f8"/>
+      <field name="created_at" type="datetime" required="true" uuid="deebbbc7-9211-4250-af93-a584c4bb13ab"/>
+      <field name="account_id" type="integer" required="true" uuid="9436575f-f0d4-4a8c-b3bb-29252957e833"/>
+      <index name="LevelServiceIndex">
+        <index-field name="level"/>
+        <index-field name="service"/>
+      </index>
+      <index name="ServiceIndex">
+        <index-field name="service"/>
+      </index>
+      <index name="ServiceCreatedIndex">
+        <index-field name="service"/>
+        <index-field name="created_at"/>
+      </index>
+      <index name="ServiceLevelCreatedIndex">
+        <index-field name="level"/>
+        <index-field name="service"/>
+        <index-field name="created_at"/>
+      </index>
+      <orm-attributes>
+        <attribute name="table">harbour_message</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="Message" to="Account" caption="Logger account" inverse-alias="account" uuid="df28ef1a-ee4f-4fcc-a0a1-5b7f2111f386">
+      <association-field from="account_id" to="id"/>
+    </association>
+    <orm-attributes>
+      <attribute name="filename-format">entity-name-only</attribute>
+      <attribute name="namespace">Harbour\LoggerBundle\Entity</attribute>
+    </orm-attributes>
+  </module>
+  <visual-data>
+    <entity uuid="3b18627f-6604-4365-8ce7-286a1b00ca79" position-x="50" position-y="50" size-x="0" size-x2="20" size-y="0" size-y2="20"/>
+    <module uuid="a33716bd-f8aa-4a91-9133-763189108c90" bk-color="4294179829" position-x="625" position-y="1125" size-x="0" size-x2="550" size-y="0" size-y2="250"/>
+  </visual-data>
+</orm-designer>
