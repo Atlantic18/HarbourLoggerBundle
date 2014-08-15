@@ -1,12 +1,3 @@
-parameters:
-    coral.connect_cache.class: Doctrine\Common\Cache\ArrayCache
-    coral.connect.class:       Coral\CoreBundle\Service\CoralConnectMockup
-
-coral_core:
-    uri:          %kernel.root_dir%/fixtures/coral_connect
-    account:      account
-    api_key:      apisecretkey
-
 framework:
     secret: test
     test: ~
@@ -33,6 +24,19 @@ swiftmailer:
     disable_delivery: true
 
 services:
+    kernel.listener.core_bundle_exception_listener:
+        class: Coral\CoreBundle\Service\JsonExceptionService
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+        arguments:
+            - @logger
+    kernel.listener.core_bundle_authentication_listener:
+        class: Coral\CoreBundle\Service\JsonAuthenticationService
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
+    coral_connect:
+        class: Coral\SiteBundle\Service\CoralConnectServiceMockup
+        arguments: ["@service_container"]
     # Doctrine Extension listeners to handle behaviors
     gedmo.listener.timestampable:
         class: Gedmo\Timestampable\TimestampableListener
